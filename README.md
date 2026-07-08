@@ -6,11 +6,15 @@ React, TypeScript, and Jest setup for a design-system-oriented Card component ta
 
 The repo currently includes one reusable `Card` component and a `ProductList` demo that renders four sample product cards. The Card API intentionally stays close to the assignment requirements while using generated CSS custom properties from the design tokens.
 
-Future design-system improvements would include Storybook documentation, a package build/export workflow, and a local consuming demo app that installs the component package through npm workspaces.
+The repo also includes Storybook documentation, a package build/export workflow, and a local consuming demo app that installs the component package through npm workspaces.
 
 ## Scripts
 
 - `npm run dev` starts the local Vite dev server.
-- `npm run build` type-checks and builds the app.
+- `npm run build` builds the component package, root demo app, and consuming demo app.
+- `npm run build:lib` builds the installable component package in `dist`.
+- `npm run storybook` starts Storybook.
+- `npm run build:storybook` builds the static Storybook site.
+- `npm run demo:dev` builds the component package and starts the consuming demo app.
 - `npm run tokens:build` generates CSS custom properties from `tokens/theme.json`.
 - `npm test` runs the Jest test suite.

@@ -2,23 +2,49 @@
   "name": "card-ds",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/card-ds.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/card-ds.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "workspaces": [
+    "apps/demo"
+  ],
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "dev": "npm run tokens:build && vite",
-    "build": "npm run tokens:build && tsc -b && vite build",
+    "build": "npm run build:lib && npm run build:app && npm run build:demo",
+    "build:app": "npm run tokens:build && tsc -b && vite build --outDir dist-app",
+    "build:demo": "npm run build -w card-ds-demo",
+    "build:lib": "npm run tokens:build && vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:storybook": "npm run tokens:build && storybook build",
+    "demo:dev": "npm run build:lib && npm run dev -w card-ds-demo",
     "preview": "vite preview",
+    "storybook": "npm run tokens:build && storybook dev -p 6006",
     "tokens:build": "style-dictionary build --config style-dictionary.config.json",
     "tokens:clean": "style-dictionary clean --config style-dictionary.config.json",
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@storybook/react-vite": "^10.4.6",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -28,6 +54,9 @@
     "@vitejs/plugin-react": "^6.0.3",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "storybook": "^10.4.6",
     "style-dictionary": "^5.5.0",
     "ts-jest": "^29.4.11",
     "typescript": "^6.0.3",

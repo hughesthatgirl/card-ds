@@ -6,7 +6,8 @@ describe('ProductList', () => {
   it('renders the sample products as a list of cards', () => {
     render(<ProductList />);
 
-    const list = screen.getByRole('list', { name: /featured products/i });
+    const region = screen.getByRole('region', { name: /featured products/i });
+    const list = within(region).getByRole('list');
     const items = within(list).getAllByRole('listitem');
 
     expect(items).toHaveLength(products.length);
