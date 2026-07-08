@@ -6,9 +6,11 @@
     "node": ">=22"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run tokens:build && vite",
+    "build": "npm run tokens:build && tsc -b && vite build",
     "preview": "vite preview",
+    "tokens:build": "style-dictionary build --config style-dictionary.config.json",
+    "tokens:clean": "style-dictionary clean --config style-dictionary.config.json",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -26,6 +28,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
+    "style-dictionary": "^5.5.0",
     "ts-jest": "^29.4.11",
     "typescript": "^6.0.3",
     "vite": "^8.1.3"

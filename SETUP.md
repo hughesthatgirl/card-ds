@@ -32,6 +32,25 @@ npm run preview
 
 Vite was chosen because it is a lightweight, standard setup for React and TypeScript. It avoids extra framework conventions, routing, or server behavior that are not needed for this assessment.
 
+## Token Pipeline
+
+Style Dictionary generates CSS custom properties from the design token source file:
+
+```text
+tokens/theme.json -> src/styles/tokens.css
+```
+
+Available token scripts:
+
+```bash
+npm run tokens:build
+npm run tokens:clean
+```
+
+The app imports the generated CSS from `src/index.css`. `npm run dev` and `npm run build` both run `tokens:build` first so the generated custom properties stay in sync with the token source.
+
+Style Dictionary was chosen because it is a recognized design-system tool and keeps the implementation minimal: one source token file, one config file, and one generated CSS output.
+
 ## React And TypeScript
 
 The project includes:
@@ -75,8 +94,6 @@ Why these were added:
 
 Storybook was not added because it is not required for the assessment and would increase setup complexity.
 
-Style Dictionary was not added because the token requirement can be met directly with CSS custom properties. It may make sense later if token export automation becomes necessary.
-
 Sass, CSS modules, Tailwind, routing, ESLint, Prettier, and component libraries were not added because they are not necessary to satisfy the stated requirements.
 
 ## Current Structure
@@ -84,6 +101,7 @@ Sass, CSS modules, Tailwind, routing, ESLint, Prettier, and component libraries 
 ```text
 index.html
 src/main.tsx
+src/styles/tokens.css
 src/App.tsx
 src/App.test.tsx
 src/index.css
@@ -91,6 +109,8 @@ src/test/setupTests.ts
 jest.config.cjs
 vite.config.ts
 tsconfig.json
+style-dictionary.config.json
+tokens/theme.json
 .nvmrc
 package.json
 ```
