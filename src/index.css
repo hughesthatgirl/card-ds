@@ -23,3 +23,7 @@ body {
   margin: 0 auto;
   padding: calc(var(--spacing-md) * 2) 0;
 }
+
+.app-shell > * + * {
+  margin-top: var(--spacing-lg);
+}
