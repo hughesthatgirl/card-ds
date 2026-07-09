@@ -1,12 +1,20 @@
-import { products } from '../../data/products';
+import { useId } from 'react';
+import type { CardProps } from '../Card';
 import { Card } from '../Card';
 import './ProductList.css';
 
-export function ProductList() {
+export type ProductListProps = {
+  products: CardProps[];
+  heading?: string;
+};
+
+export function ProductList({ products, heading = 'Featured Products' }: ProductListProps) {
+  const headingId = useId();
+
   return (
-    <section className="product-list" aria-labelledby="featured-products-heading">
-      <h2 className="product-list__heading" id="featured-products-heading">
-        Featured Products
+    <section className="product-list" aria-labelledby={headingId}>
+      <h2 className="product-list__heading" id={headingId}>
+        {heading}
       </h2>
       <ul className="product-list__items">
         {products.map((product) => (
@@ -18,4 +26,3 @@ export function ProductList() {
     </section>
   );
 }
-

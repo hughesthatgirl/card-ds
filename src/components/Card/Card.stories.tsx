@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { products } from '../../data/products';
 import { Card } from './Card';
 
 const meta = {
@@ -6,6 +7,44 @@ const meta = {
   component: Card,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component:
+          'Card presents one product with an image, title, price, description, and link. It uses design tokens through CSS custom properties and keeps the primary navigation behavior on a native anchor.',
+      },
+    },
+  },
+  argTypes: {
+    image: {
+      control: 'text',
+      description: 'Image URL for the card media area.',
+      table: { type: { summary: 'string' } },
+    },
+    imageAlt: {
+      control: 'text',
+      description: 'Accessible description for the product image.',
+      table: { type: { summary: 'string' } },
+    },
+    title: {
+      control: 'text',
+      description: 'Product title. This is also the visible link text.',
+      table: { type: { summary: 'string' } },
+    },
+    price: {
+      control: 'text',
+      description: 'Display-ready product price.',
+      table: { type: { summary: 'string' } },
+    },
+    description: {
+      control: 'text',
+      description: 'Short product description.',
+      table: { type: { summary: 'string' } },
+    },
+    link: {
+      control: 'text',
+      description: 'Navigation URL for the product.',
+      table: { type: { summary: 'string' } },
+    },
   },
   args: {
     image:
@@ -37,3 +76,37 @@ export const LongDescription: Story = {
   },
 };
 
+export const ConstrainedWidth: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ width: '280px' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const GridLayout: Story = {
+  render: () => (
+    <ul
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+        gap: 'var(--spacing-lg)',
+        width: '920px',
+        padding: 0,
+        margin: 0,
+        listStyle: 'none',
+      }}
+    >
+      {products.slice(0, 3).map((product) => (
+        <li key={product.title}>
+          <Card {...product} />
+        </li>
+      ))}
+    </ul>
+  ),
+  parameters: {
+    layout: 'centered',
+  },
+};

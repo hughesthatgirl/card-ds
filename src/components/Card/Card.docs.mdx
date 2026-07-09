@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Card/Documentation" />
+
+# Card
+
+Use `Card` to present a single product with an image, title, price, short description, and link to more detail.
+
+## When To Use
+
+- Use Card when the content represents one product or product-like object.
+- Use it when the whole surface should act as a single navigation target.
+- Use it inside product grids, recommendation sections, and related-product lists.
+
+## When Not To Use
+
+- Do not use Card for dense tabular comparison.
+- Do not use Card when the content needs multiple independent actions inside the same surface.
+- Do not use Card for non-product marketing content unless the prop model still fits naturally.
+
+## Props
+
+| Prop | Type | Required | Description |
+| --- | --- | --- | --- |
+| `image` | `string` | Yes | Image URL rendered in the card media area. |
+| `imageAlt` | `string` | Yes | Accessible image description. Use meaningful alt text for product images. |
+| `title` | `string` | Yes | Product title. Also serves as the visible link text. |
+| `price` | `string` | Yes | Display-ready price text. |
+| `description` | `string` | Yes | Short product summary. Keep it concise for grid consistency. |
+| `link` | `string` | Yes | URL used by the title link. The clickable area is expanded to cover the whole card. |
+
+## Accessibility
+
+The Card uses semantic HTML and keeps the actual navigation element as a normal anchor.
+
+The title is rendered as a heading, and the title text is the link's accessible name. The full-card click target is created with a pseudo-element on the link, which keeps keyboard navigation and screen-reader behavior predictable.
+
+Focus is visible through the focus shadow token. The component supports keyboard navigation because it relies on a native anchor element instead of custom click handlers.

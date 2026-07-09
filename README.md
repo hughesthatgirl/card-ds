@@ -4,9 +4,17 @@ React, TypeScript, and Jest setup for a design-system-oriented Card component ta
 
 ## Current Component
 
-The repo currently includes one reusable `Card` component and a `ProductList` demo that renders four sample product cards. The Card API intentionally stays close to the assignment requirements while using generated CSS custom properties from the design tokens.
+The repo currently includes one reusable `Card` component and one reusable `ProductList` component. The Card API intentionally stays close to the assignment requirements while using generated CSS custom properties from the design tokens.
 
 The repo also includes Storybook documentation, a package build/export workflow, and a local consuming demo app that installs the component package through npm workspaces.
+
+## Public Exports
+
+- `Card`
+- `ProductList`
+- `CardProps`
+- `ProductListProps`
+- `card-ds/styles.css`
 
 ## Scripts
 

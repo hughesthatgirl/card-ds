@@ -1,4 +1,5 @@
-import { Card } from 'card-ds';
+import { ProductList } from 'card-ds';
+import type { CardProps } from 'card-ds';
 import 'card-ds/styles.css';
 import './styles.css';
 
@@ -30,7 +31,7 @@ const demoProducts = [
     description: 'A compact smartwatch for workouts and everyday activity tracking.',
     link: '/products/track-smartwatch',
   },
-];
+] satisfies CardProps[];
 
 export function App() {
   return (
@@ -39,14 +40,7 @@ export function App() {
         <h1>Consuming App Demo</h1>
         <p>This app imports the built Card component from the local card-ds package.</p>
       </header>
-      <ul className="demo-grid" aria-label="Demo products">
-        {demoProducts.map((product) => (
-          <li key={product.title}>
-            <Card {...product} />
-          </li>
-        ))}
-      </ul>
+      <ProductList products={demoProducts} heading="Demo Products" />
     </main>
   );
 }
-
