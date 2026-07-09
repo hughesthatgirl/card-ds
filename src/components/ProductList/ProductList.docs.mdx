@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { PropsTable } from '../../docs/PropsTable';
+
+<Meta title="Components/ProductList/Documentation" />
+
+# ProductList
+
+Use `ProductList` to render a responsive collection of product cards with consistent spacing, list semantics, and heading structure.
+
+## Overview
+
+`ProductList` is a layout component for a group of related products. It standardizes the responsive grid pattern used by the demo app and consuming app while still relying on `Card` for the individual item presentation.
+
+The component expects an array of `CardProps`, so it stays closely aligned with the Card API and does not introduce a separate data model.
+
+## When To Use
+
+- Use ProductList when rendering related product cards in a 3 column layout.
+
+## When Not To Use
+
+- Do not use ProductList as a generic layout container. Only use with the Product Card component. 
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: 'products',
+      type: 'CardProps[]',
+      required: true,
+      description: 'Product data passed through to Card. Each product needs image, imageAlt, title, price, description, and link.',
+    },
+    {
+      name: 'heading',
+      type: 'string',
+      required: true,
+      defaultValue: 'Featured Products',
+      description: 'Section heading rendered above the product list.',
+    },
+  ]}
+/>
+
+## Accessibility
+
+ProductList renders a labelled section with a heading, then uses an unordered list for the product cards.
+
+Each product is rendered inside an `li`, which helps assistive technology announce list structure and item count. The heading should fit the page outline where the component is used.
+
+Each nested Card keeps its own product image, heading, price, description, and native link behavior.
+
+## Code Example
+
+```tsx
+import { ProductList } from 'card-ds';
+import 'card-ds/styles.css';
+
+const products = [
+  {
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+    imageAlt: 'Minimal wristwatch on a pale background',
+    title: 'Everyday Watch',
+    price: '$129',
+    description: 'A simple analog watch with a clean face and comfortable leather strap.',
+    link: '/products/everyday-watch',
+  },
+];
+
+export function FeaturedProducts() {
+  return <ProductList products={products} heading="Featured Products" />;
+}
+```
+
+The implementation keeps the list semantics explicit:
+
+```tsx
+<section className="product-list" aria-labelledby={headingId}>
+  <h2 className="product-list__heading" id={headingId}>
+    {heading}
+  </h2>
+  <ul className="product-list__items">
+    {products.map((product) => (
+      <li className="product-list__item" key={product.title}>
+        <Card {...product} />
+      </li>
+    ))}
+  </ul>
+</section>
+```
+

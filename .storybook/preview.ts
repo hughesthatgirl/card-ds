@@ -9,8 +9,17 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Design System',
+          ['Intro', 'Tokens'],
+          'Components',
+          ['Card', ['Documentation', '*'], 'ProductList', ['Documentation', '*']],
+        ],
+      },
+    },
   },
 };
 
 export default preview;
-

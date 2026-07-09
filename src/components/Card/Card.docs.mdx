@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { PropsTable } from '../../docs/PropsTable';
 
 <Meta title="Components/Card/Documentation" />
 
@@ -6,28 +7,76 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Use `Card` to present a single product with an image, title, price, short description, and link to more detail.
 
+## Overview
+
+A card should summarize a single subject. It should be understandable on its own, but it is usually most useful in a group of similar cards. In `card-ds`, the Card is intentionally product-focused: it always includes product media, a title, a price, a short description, and one navigation target.
+
+The component uses generated token custom properties for color, spacing, border radius, shadows, focus treatment, and motion.
+
 ## When To Use
 
-- Use Card when the content represents one product or product-like object.
-- Use it when the whole surface should act as a single navigation target.
-- Use it inside product grids, recommendation sections, and related-product lists.
+- Use Card for product summaries that link to more detail.
+- Use Card in product grids, recommendation sections, and related-product lists.
+- Use Card when the entire surface should behave as one navigation target.
+- Use Card when each item in a collection has similar content shape and weight.
 
 ## When Not To Use
 
-- Do not use Card for dense tabular comparison.
-- Do not use Card when the content needs multiple independent actions inside the same surface.
-- Do not use Card for non-product marketing content unless the prop model still fits naturally.
+- Do not use Card for dense comparisons where a table would be easier to scan.
+- Do not use Card when the content needs multiple independent actions.
+- Do not use Card for a single standalone call to action.
+- Do not use Card for long-form text or sequential content that should be read in order.
+
+## Usage Guidance
+
+- Keep card content concise. The title should clearly identify the product, and the description should help someone decide whether to follow the link.
+
+- Use distinct images and descriptions across a collection so each card is easy to tell apart. Avoid repeating the same image or boilerplate text across every card.
+
+- Cards should remain modular. Reordering cards in a list should not change the meaning of any individual card.
 
 ## Props
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `image` | `string` | Yes | Image URL rendered in the card media area. |
-| `imageAlt` | `string` | Yes | Accessible image description. Use meaningful alt text for product images. |
-| `title` | `string` | Yes | Product title. Also serves as the visible link text. |
-| `price` | `string` | Yes | Display-ready price text. |
-| `description` | `string` | Yes | Short product summary. Keep it concise for grid consistency. |
-| `link` | `string` | Yes | URL used by the title link. The clickable area is expanded to cover the whole card. |
+<PropsTable
+  rows={[
+    {
+      name: 'image',
+      type: 'string',
+      required: true,
+      description: 'Image URL rendered in the card media area.',
+    },
+    {
+      name: 'imageAlt',
+      type: 'string',
+      required: true,
+      description: 'Accessible image description. Use meaningful alt text for product images.',
+    },
+    {
+      name: 'title',
+      type: 'string',
+      required: true,
+      description: 'Product title. This is also the visible link text.',
+    },
+    {
+      name: 'price',
+      type: 'string',
+      required: true,
+      description: 'Display-ready price text.',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      required: true,
+      description: 'Short product summary. Keep it concise for grid consistency.',
+    },
+    {
+      name: 'link',
+      type: 'string',
+      required: true,
+      description: 'URL used by the title link. The clickable area is expanded to cover the whole card.',
+    },
+  ]}
+/>
 
 ## Accessibility
 
@@ -36,3 +85,44 @@ The Card uses semantic HTML and keeps the actual navigation element as a normal 
 The title is rendered as a heading, and the title text is the link's accessible name. The full-card click target is created with a pseudo-element on the link, which keeps keyboard navigation and screen-reader behavior predictable.
 
 Focus is visible through the focus shadow token. The component supports keyboard navigation because it relies on a native anchor element instead of custom click handlers.
+
+When Card appears inside `ProductList`, the list uses `ul` and `li` elements so assistive technology can announce the number of items and move between list items predictably.
+
+## Code Example
+
+```tsx
+import { Card } from 'card-ds';
+import 'card-ds/styles.css';
+
+export function ProductCardExample() {
+  return (
+    <Card
+      image="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+      imageAlt="Minimal wristwatch on a pale background"
+      title="Everyday Watch"
+      price="$129"
+      description="A simple analog watch with a clean face and comfortable leather strap."
+      link="/products/everyday-watch"
+    />
+  );
+}
+```
+
+The implementation keeps the link on the title and expands the clickable area with CSS:
+
+```tsx
+<article className="card">
+  <div className="card__media">
+    <img className="card__image" src={image} alt={imageAlt} />
+  </div>
+  <div className="card__content">
+    <h3 className="card__title">
+      <a className="card__link" href={link}>
+        {title}
+      </a>
+    </h3>
+    <p className="card__price">{price}</p>
+    <p className="card__description">{description}</p>
+  </div>
+</article>
+```
