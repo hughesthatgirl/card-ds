@@ -19,7 +19,6 @@ const meta = {
       description: 'Section heading shown above the product list.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'Featured Products' },
       },
     },
     products: {
@@ -47,4 +46,3 @@ export const FourCards: Story = {
     products,
   },
 };
-

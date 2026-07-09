@@ -4,7 +4,7 @@ import { products } from '../../data/products';
 
 describe('ProductList', () => {
   it('renders the sample products as a list of cards', () => {
-    render(<ProductList products={products} />);
+    render(<ProductList products={products} heading="Featured Products" />);
 
     const region = screen.getByRole('region', { name: /featured products/i });
     const list = within(region).getByRole('list');

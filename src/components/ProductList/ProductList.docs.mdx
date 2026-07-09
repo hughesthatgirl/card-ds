@@ -11,7 +11,7 @@ Use `ProductList` to render a responsive collection of product cards with consis
 
 `ProductList` is a layout component for a group of related products. It standardizes the responsive grid pattern used by the demo app and consuming app while still relying on `Card` for the individual item presentation.
 
-The component expects an array of `CardProps`, so it stays closely aligned with the Card API and does not introduce a separate data model.
+The component expects an array of `CardProps`, so it stays closely aligned with the Card API and does not introduce a separate data model. The heading is required so every product list section has an accessible name.
 
 ## When To Use
 
@@ -35,7 +35,6 @@ The component expects an array of `CardProps`, so it stays closely aligned with 
       name: 'heading',
       type: 'string',
       required: true,
-      defaultValue: 'Featured Products',
       description: 'Section heading rendered above the product list.',
     },
   ]}
@@ -87,4 +86,3 @@ The implementation keeps the list semantics explicit:
   </ul>
 </section>
 ```
-

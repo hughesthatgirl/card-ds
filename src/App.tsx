@@ -6,7 +6,7 @@ export function App() {
   return (
     <main>
       <h1>Card DS</h1>
-      <ProductList products={products} />
+      <ProductList products={products} heading="Featured Products" />
     </main>
   );
 }

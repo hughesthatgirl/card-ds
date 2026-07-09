@@ -5,10 +5,10 @@ import './ProductList.css';
 
 export type ProductListProps = {
   products: CardProps[];
-  heading?: string;
+  heading: string;
 };
 
-export function ProductList({ products, heading = 'Featured Products' }: ProductListProps) {
+export function ProductList({ products, heading }: ProductListProps) {
   const headingId = useId();
 
   return (
