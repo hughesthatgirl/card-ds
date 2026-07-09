@@ -20,10 +20,14 @@ body {
   width: min(100% - 32px, 1120px);
   margin: 0 auto;
   padding: calc(var(--spacing-md) * 2) 0;
+  display: grid;
+  gap: var(--spacing-lg);
 }
 
 .demo-header {
-  margin-bottom: var(--spacing-lg);
+  display: grid;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) 0;
 }
 
 .demo-header h1,
@@ -32,7 +36,12 @@ body {
 }
 
 .demo-header p {
-  margin-top: var(--spacing-sm);
+  color: var(--color-text-secondary);
+}
+
+.demo-footer {
+  text-align: center;
+  padding: var(--spacing-lg);
   color: var(--color-text-secondary);
 }
 

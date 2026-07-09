@@ -35,12 +35,15 @@ const demoProducts = [
 
 export function App() {
   return (
-    <main className="demo-shell">
-      <header className="demo-header">
-        <h1>Consuming App Demo</h1>
-        <p>This app imports the built Card component from the local card-ds package.</p>
-      </header>
-      <ProductList products={demoProducts} heading="Demo Products" />
-    </main>
+    <>
+      <main className="demo-shell">
+        <header className="demo-header">
+          <h1>Consuming App Demo</h1>
+          <p>This app imports the Card and ProductList components from the local card-ds package.</p>
+        </header>
+        <ProductList products={demoProducts} heading="New Products" />
+      </main>
+      <footer className='demo-footer'>card-ds Consuming App Demo | SAS Role Based Activity</footer>
+    </>
   );
 }
