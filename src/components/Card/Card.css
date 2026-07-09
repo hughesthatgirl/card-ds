@@ -27,7 +27,7 @@
 
 .card__media {
   aspect-ratio: 4 / 3;
-  background: var(--color-background-hover);
+  overflow: hidden;  
 }
 
 .card__image {

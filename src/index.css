@@ -14,16 +14,25 @@
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
 }
 
-.app-shell {
-  width: min(100% - 32px, 1120px);
-  margin: 0 auto;
-  padding: calc(var(--spacing-md) * 2) 0;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.app-shell > * + * {
-  margin-top: var(--spacing-lg);
+main {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-md) * 2) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  flex-grow: 1;
+}
+
+h1 {
+  margin: 0;
 }

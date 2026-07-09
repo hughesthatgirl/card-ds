@@ -12,15 +12,22 @@
 
 body {
   margin: 0;
-  min-width: 320px;
   min-height: 100vh;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .demo-shell {
-  width: min(100% - 32px, 1120px);
+  padding: calc(var(--spacing-md) * 2);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: calc(var(--spacing-md) * 2) 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   gap: var(--spacing-lg);
 }
 
@@ -43,5 +50,6 @@ body {
   text-align: center;
   padding: var(--spacing-lg);
   color: var(--color-text-secondary);
+  background-color: #f5f5f5;
 }
 
